@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Walker
   layers:
   - Default
   - TransparentFX
@@ -13,31 +14,43 @@ TagManager:
   - UI
   - 
   - 
+  - Foundation
+  - Housing
+  - Food
+  - Storage
+  - Distribution
+  - 
+  - WaterService
   - 
   - 
   - 
   - 
   - 
+  - CollapseRisk
+  - FireRisk
+  - DiseaseRisk
   - 
   - 
   - 
+  - DesirabilityLayer
+  - IronLayer
+  - EntertainmentLayer
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Roads
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3538454939
+    locked: 0
+  - name: Roads
+    uniqueID: 2300570723
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Overlays
+    uniqueID: 890372405
+    locked: 0
+  - name: Highlights
+    uniqueID: 1287106125
     locked: 0
