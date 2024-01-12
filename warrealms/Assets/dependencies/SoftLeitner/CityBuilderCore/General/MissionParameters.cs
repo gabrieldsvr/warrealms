@@ -11,6 +11,7 @@ namespace CityBuilderCore
     {
         public Mission Mission;
         public Difficulty Difficulty;
+        public Civilization Civilization;
         public bool IsContinue;
         public string ContinueName;
         public int RandomSeed;

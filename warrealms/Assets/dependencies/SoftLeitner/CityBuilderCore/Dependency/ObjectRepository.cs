@@ -18,6 +18,7 @@ namespace CityBuilderCore
         public EmploymentGroupSet EmploymentGroups;
         public MissionSet Missions;
         public DifficultySet Difficulties;
+        public CivilizationSet Civilizations;
 
         [Header("Singles (convenience option when theres only one)")]
         public BuildingAddon Addon;
@@ -30,6 +31,7 @@ namespace CityBuilderCore
         public EmploymentGroup EmploymentGroup;
         public Mission Mission;
         public Difficulty Difficulty;
+        public Civilization Civilization;
 
         private void Awake()
         {
@@ -40,6 +42,7 @@ namespace CityBuilderCore
             Dependencies.Register(getKeyedSet(EmploymentGroups, EmploymentGroup));
             Dependencies.Register(getKeyedSet(Missions, Mission));
             Dependencies.Register(getKeyedSet(Difficulties, Difficulty));
+            Dependencies.Register(getKeyedSet(Civilizations, Civilization));
 
             Dependencies.Register(getObjectSet(Addons, Addon));
             Dependencies.Register(getObjectSet(Buildings, Building));
@@ -51,6 +54,7 @@ namespace CityBuilderCore
             Dependencies.Register(getObjectSet(EmploymentGroups, EmploymentGroup));
             Dependencies.Register(getObjectSet(Missions, Mission));
             Dependencies.Register(getObjectSet(Difficulties, Difficulty));
+            Dependencies.Register(getObjectSet(Civilizations, Civilization));
         }
 
         private IKeyedSet<T> getKeyedSet<T>(IKeyedSet<T> set, T single) where T : IKeyed
