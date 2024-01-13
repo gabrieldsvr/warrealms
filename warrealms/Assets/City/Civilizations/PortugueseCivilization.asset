@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c1fdb09a8149b98960eff836c8303b, type: 3}
+  m_Name: PortugueseCivilization
+  m_EditorClassIdentifier: 
+  Key: PT
+  Name: Portugueses
+  About: "Os Portugueses, navegadores audaciosos e pioneiros da Era das Descobertas,
+    destacam-se pela sua habilidade excepcional na explora\xE7\xE3o mar\xEDtima.
+    Durante a era medieval, Portugal floresceu como uma na\xE7\xE3o de comerciantes
+    e exploradores, estabelecendo rotas comerciais mar\xEDtimas que conectavam o
+    mundo. Suas habilidades em navega\xE7\xE3o e diplomacia lhes permitiam estabelecer
+    col\xF4nias e postos comerciais em terras distantes, trazendo riquezas e conhecimentos
+    diversos. Em sua jornada, os portugueses s\xE3o movidos pela busca incessante
+    de novos horizontes e alian\xE7as estrat\xE9gicas, tornando-os mestres indiscut\xEDveis
+    dos mares."
+  ExclusiveConstruction: {fileID: 0}
+  DefaultSettler: {fileID: 0}
+  GoldMiningTimeMutiplier: 1
+  RockMiningTimeMutiplier: 1
+  WoodExtractionTimeMutiplier: 1
+  HarvestTimeMutiplier: 1
+  BuildingTimeMutiplier: 1
+  GoldExtractedAmountMutiplier: 1
+  RockExtractedAmountMutiplier: 1
+  WoodExtractedAmountMutiplier: 1
+  FoodHarvestedAmountMutiplier: 1
