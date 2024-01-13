@@ -18,4 +18,5 @@ MonoBehaviour:
   UnitSize: 1
   Icon: {fileID: 21300000, guid: a431f267ca267464abf8aa13a56bf4bb, type: 3}
   Material: {fileID: 2100000, guid: 5f37ff472f7c7274287105bb71520284, type: 2}
-  Visuals: []
+  Visuals:
+  - {fileID: 498140434663082342, guid: 1e91fae2e8401d844b164d984128c952, type: 3}
