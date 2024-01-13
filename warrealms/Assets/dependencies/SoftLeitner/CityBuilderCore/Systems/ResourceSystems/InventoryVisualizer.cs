@@ -75,7 +75,7 @@ OwnedWalker	walker item owners")]
                 case InventoryMode.Owned:
                     quantity = Item.GetBuildingOwnedQuantity() + Item.GetWalkerOwnedQuantity();
                     break;
-                case InventoryMode.OwnedBuildings:
+                case InventoryMode.OwnedBuildings: 
                     quantity = Item.GetBuildingOwnedQuantity();
                     break;
                 case InventoryMode.OwnedWalkers:
