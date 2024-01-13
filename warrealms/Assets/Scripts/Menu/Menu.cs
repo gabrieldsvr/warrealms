@@ -21,7 +21,7 @@ namespace CityBuilderTown
         public CanvasGroup Options;
         [Tooltip("canvas group that contains the options title")]
         public CanvasGroup Title;
-        [Tooltip("canvas group that contains the options subtitle")]
+        [Tooltip("canvas group that contains the options subtitle ")]
         public CanvasGroup Subtitle;
 
 
