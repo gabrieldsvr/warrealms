@@ -16871,9 +16871,10 @@ GameObject:
   - component: {fileID: 4655617523428756871}
   - component: {fileID: 513265915214684808}
   - component: {fileID: 5118405667866834309}
+  - component: {fileID: 5737528506922597703}
   m_Layer: 5
   m_Name: Bank
-  m_TagString: Untagged
+  m_TagString: Exclusive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16992,6 +16993,21 @@ MonoBehaviour:
   AllowTouchPan: 0
   BuildingInfo: {fileID: 11400000, guid: 23b85630aadee7b4ca6d6c37d67bc74a, type: 2}
   AllowRotate: 1
+--- !u!114 &5737528506922597703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018964431443960510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27df7ebb520b458189599e4d89fc8890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exclusiveCivilizatio: {fileID: 11400000, guid: 7fc6290ff012ada419410d737b239af5,
+    type: 2}
+  isActive: 0
 --- !u!1 &7232752471227196115
 GameObject:
   m_ObjectHideFlags: 0
