@@ -21,6 +21,9 @@ namespace CityBuilderTown
         public CanvasGroup Options;
         [Tooltip("canvas group that contains the options title")]
         public CanvasGroup Title;
+        [Tooltip("canvas group that contains the options subtitle")]
+        public CanvasGroup Subtitle;
+
 
         private CanvasGroup _currentGroup;
 
@@ -50,6 +53,8 @@ namespace CityBuilderTown
         {
 
             Title.gameObject.SetActive(_currentGroup != Buttons);
+            
+            Subtitle.gameObject.SetActive(_currentGroup != Buttons);
             
             StopAllCoroutines();
             StartCoroutine(fade(_currentGroup, canvasGroup));
