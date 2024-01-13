@@ -1,4 +1,5 @@
-﻿using CityBuilderCore;
+﻿using System;
+using CityBuilderCore;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,13 +15,22 @@ namespace CityBuilderTown
         public int WalkerCount = 1;
         [Tooltip("total duration that has to be spent by walkers progressing the task before it is finished")]
         public float Duration = 1f;
-
         public float Progress => Mathf.Min(1f, _work / Duration);
 
         public override IEnumerable<TownWalker> Walkers => _walkers;
 
         private List<TownWalker> _walkers = new List<TownWalker>();
         private float _work;
+        
+        private IGameSettings _settings;
+
+        private void Start()
+        {
+            _settings = Dependencies.Get<IGameSettings>();
+
+            Duration *= _settings.BuildingTimeMutiplier;
+        }
+
 
         public override bool CanStartTask(TownWalker walker)
         {

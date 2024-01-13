@@ -1,4 +1,5 @@
-﻿using CityBuilderCore;
+﻿using System;
+using CityBuilderCore;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace CityBuilderTown
     {
         [Tooltip("how long it takes a walker to pick up the items")]
         public float CollectDuration;
+
         [Tooltip("items that are added to the walker when it finishes the task")]
         public ItemQuantity Items;
 
@@ -28,10 +30,35 @@ namespace CityBuilderTown
 
         private TownWalker _walker;
 
+        private IGameSettings _settings;
+
+
+        private void Start()
+        {
+            _settings = Dependencies.Get<IGameSettings>();
+
+            if (Items.Item.Key == FindObjectOfType<ObjectRepository>().Items.GetObject("LOG").Key)
+            {
+                Items.Quantity = Mathf.RoundToInt(Items.Quantity * _settings.WoodExtractedAmountMutiplier);
+            }
+            
+            if (Items.Item.Key == FindObjectOfType<ObjectRepository>().Items.GetObject("STN").Key)
+            {
+                Items.Quantity = Mathf.RoundToInt(Items.Quantity * _settings.RockExtractedAmountMutiplier);
+            }
+            
+              
+            if (Items.Item.Key == FindObjectOfType<ObjectRepository>().Items.GetObject("CBER").Key)
+            {
+                Items.Quantity = Mathf.RoundToInt(Items.Quantity * _settings.FoodHarvestedAmountMutiplier);
+            }
+        }
+
         public override bool CanStartTask(TownWalker walker)
         {
             return _walker == null && !walker.ItemStorage.HasItems();
         }
+
         public override WalkerAction[] StartTask(TownWalker walker)
         {
             _walker = walker;
@@ -39,13 +66,15 @@ namespace CityBuilderTown
             return new WalkerAction[]
             {
                 new WalkPointAction(Point),
-                new WaitAnimatedAction(CollectDuration,TownManager.WorkParameter)
+                new WaitAnimatedAction(CollectDuration, TownManager.WorkParameter)
             };
         }
+
         public override void ContinueTask(TownWalker walker)
         {
             _walker = walker;
         }
+
         public override void FinishTask(TownWalker walker, ProcessState process)
         {
             _walker = null;
@@ -59,6 +88,7 @@ namespace CityBuilderTown
         }
 
         public override string GetDescription() => $"picking up {Items.Item.Name}";
+
         public override string GetDebugText()
         {
             return Items.ToString();

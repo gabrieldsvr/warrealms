@@ -31,8 +31,20 @@ namespace CityBuilderCore
         public float RiskMultiplier = 1f;
         [Tooltip("influences the speed at which services deplete")]
         public float ServiceMultiplier = 1f;
-        [Tooltip("influences the speed at which items deplete")]
+        [Tooltip("itens")]
         public float ItemsMultiplier = 1f;
+        
+        [Header("Civilization Mutiplier")]
+        public float GoldMiningTimeMutiplier = 1f;
+        public float RockMiningTimeMutiplier = 1f;
+        public float WoodExtractionTimeMutiplier = 1f;
+        public float HarvestTimeMutiplier = 1f;
+        public float BuildingTimeMutiplier = 1f;
+        public float GoldExtractedAmountMutiplier = 1f;
+        public float RockExtractedAmountMutiplier = 1f;
+        public float WoodExtractedAmountMutiplier = 1f;
+        public float FoodHarvestedAmountMutiplier = 1f;
+        [Tooltip("influences the speed at which items deplete")]
         [Header("Saving")]
         public bool SaveMetaData;
 
@@ -41,6 +53,19 @@ namespace CityBuilderCore
         float IGameSettings.RiskMultiplier => _currentRiskMultiplier;
         float IGameSettings.ServiceMultiplier => _currentServiceMultiplier;
         float IGameSettings.ItemsMultiplier => _currentItemsMultiplier;
+        
+        float IGameSettings.GoldExtractedAmountMutiplier => _currentGoldExtractedAmountMutiplier;
+        float IGameSettings.GoldMiningTimeMutiplier => _currentGoldMiningTimeMutiplier;
+        float IGameSettings.RockExtractedAmountMutiplier => _currentRockExtractedAmountMutiplier;
+        float IGameSettings.RockMiningTimeMutiplier => _currentRockMiningTimeMutiplier;
+        float IGameSettings.HarvestTimeMutiplier => _currentHarvestTimeMutiplier;
+        float IGameSettings.WoodExtractedAmountMutiplier => _currentWoodExtractedAmountMutiplier;
+        float IGameSettings.WoodExtractionTimeMutiplier => _currentWoodExtractionTimeMutiplier;
+        float IGameSettings.BuildingTimeMutiplier => _currentBuildingTimeMutiplier;
+        float IGameSettings.FoodHarvestedAmountMutiplier => _currentFoodHarvestedAmountMutiplier;
+        
+        
+        
         float IGameSettings.CheckInterval => CheckInterval;
         bool IGameSpeed.IsPaused => IsPaused;
 
@@ -88,6 +113,19 @@ namespace CityBuilderCore
         private float _currentServiceMultiplier;
         private float _currentItemsMultiplier;
 
+        private List<ICivilizationFactor> _civilizationFactors = new List<ICivilizationFactor>();
+        private float _currentGoldMiningTimeMutiplier;
+        private float _currentRockMiningTimeMutiplier;
+        private float _currentWoodExtractionTimeMutiplier;
+        private float _currentHarvestTimeMutiplier;
+        private float _currentBuildingTimeMutiplier;
+        private float _currentGoldExtractedAmountMutiplier;
+        private float _currentRockExtractedAmountMutiplier;
+        private float _currentWoodExtractedAmountMutiplier;
+        private float _currentFoodHarvestedAmountMutiplier;
+        public GameObject _currentExclusiveConstruction;
+        public GameObject _currentDefaultSettler;
+
         private ExtraDataBehaviour[] _extras;
 
         private TimingHappeningState[] _happeningStates;
@@ -125,6 +163,7 @@ namespace CityBuilderCore
         protected virtual void Update()
         {
             calculateDifficulty();
+            calculateCivilization();
 
             if (Speed != _speed)
             {
@@ -144,6 +183,9 @@ namespace CityBuilderCore
             MissionParameters = missionParameters;
             if (MissionParameters.Difficulty != null)
                 RegisterDifficultyFactor(MissionParameters.Difficulty);
+            
+            if (MissionParameters.Civilization != null)
+                RegisterCivilizationFactor(MissionParameters.Civilization);
 
             if (MissionParameters.IsContinue)
             {
@@ -183,6 +225,10 @@ namespace CityBuilderCore
         }
 
         public void RegisterDifficultyFactor(IDifficultyFactor difficultyFactor) => _difficultyFactors.Add(difficultyFactor);
+
+        public void RegisterCivilizationFactor(ICivilizationFactor civilizationFactor) =>
+            _civilizationFactors.Add(civilizationFactor);
+
         public void DeregisterDifficultyFactor(IDifficultyFactor difficultyFactor) => _difficultyFactors.Remove(difficultyFactor);
 
         private void calculateDifficulty()
@@ -196,6 +242,32 @@ namespace CityBuilderCore
                 _currentRiskMultiplier *= difficultyFactor.RiskMultiplier;
                 _currentServiceMultiplier *= difficultyFactor.ServiceMultiplier;
                 _currentItemsMultiplier *= difficultyFactor.ItemsMultiplier;
+            }
+        }
+        
+        private void calculateCivilization()
+        {
+            _currentGoldMiningTimeMutiplier = 1f;
+            _currentRockMiningTimeMutiplier = 1f;
+            _currentWoodExtractionTimeMutiplier = 1f;
+            _currentHarvestTimeMutiplier = 1f;
+            _currentBuildingTimeMutiplier = 1f;
+            _currentGoldExtractedAmountMutiplier = 1f;
+            _currentRockExtractedAmountMutiplier = 1f;
+            _currentWoodExtractedAmountMutiplier = 1f;
+            _currentFoodHarvestedAmountMutiplier = 1f;
+
+            foreach (var civilizationFactor in _civilizationFactors)
+            {
+                _currentGoldMiningTimeMutiplier *= civilizationFactor.GoldMiningTimeMutiplier;
+                _currentRockMiningTimeMutiplier *= civilizationFactor.RockMiningTimeMutiplier;
+                _currentWoodExtractionTimeMutiplier *= civilizationFactor.WoodExtractionTimeMutiplier;
+                _currentHarvestTimeMutiplier *= civilizationFactor.HarvestTimeMutiplier;
+                _currentBuildingTimeMutiplier *= civilizationFactor.BuildingTimeMutiplier;
+                _currentGoldExtractedAmountMutiplier *= civilizationFactor.GoldExtractedAmountMutiplier;
+                _currentRockExtractedAmountMutiplier *= civilizationFactor.RockExtractedAmountMutiplier;
+                _currentWoodExtractedAmountMutiplier *= civilizationFactor.WoodExtractedAmountMutiplier;
+                _currentFoodHarvestedAmountMutiplier *= civilizationFactor.FoodHarvestedAmountMutiplier;
             }
         }
 
@@ -445,5 +517,7 @@ namespace CityBuilderCore
             IsLoadingChanged?.Invoke(false);
         }
         #endregion
+
+        
     }
 }

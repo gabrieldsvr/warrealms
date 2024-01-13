@@ -9,7 +9,7 @@ namespace CityBuilderCore
     {
         [Header("Sets")]
         public BuildingAddonSet Addons;
-        public BuildingInfoSet Buildings;
+        public BuildingDefaultInfoSet BuildingsDefault;
         public WalkerInfoSet Walkers;
         public ItemSet Items;
         public PopulationSet Populations;
@@ -36,7 +36,7 @@ namespace CityBuilderCore
         private void Awake()
         {
             Dependencies.Register(getKeyedSet(Addons, Addon));
-            Dependencies.Register(getKeyedSet(Buildings, Building));
+            Dependencies.Register(getKeyedSet(BuildingsDefault, Building));
             Dependencies.Register(getKeyedSet(Items, Item));
             Dependencies.Register(getKeyedSet(Populations, Population));
             Dependencies.Register(getKeyedSet(EmploymentGroups, EmploymentGroup));
@@ -45,7 +45,7 @@ namespace CityBuilderCore
             Dependencies.Register(getKeyedSet(Civilizations, Civilization));
 
             Dependencies.Register(getObjectSet(Addons, Addon));
-            Dependencies.Register(getObjectSet(Buildings, Building));
+            Dependencies.Register(getObjectSet(BuildingsDefault, Building));
             Dependencies.Register(getObjectSet(Walkers, Walker));
             Dependencies.Register(getObjectSet(Items, Item));
             Dependencies.Register(getObjectSet(Populations, Population));

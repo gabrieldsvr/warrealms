@@ -6,6 +6,7 @@
         /// when false efficiency is disabled and always 1, mainly useful for debugging
         /// </summary>
         bool HasEfficiency { get; }
+
         /// <summary>
         /// when false employment is disabled and behaves as if always fully employed, mainly useful for debugging
         /// </summary>
@@ -15,14 +16,27 @@
         /// influences the speed at which risks increase
         /// </summary>
         float RiskMultiplier { get; }
+
         /// <summary>
         /// influences the speed at which services deplete
         /// </summary>
         float ServiceMultiplier { get; }
+
         /// <summary>
         /// influences the speed at which items deplete
         /// </summary>
         float ItemsMultiplier { get; }
+
+        float GoldMiningTimeMutiplier { get; }
+
+        float RockMiningTimeMutiplier { get; }
+        float WoodExtractionTimeMutiplier { get; }
+        float HarvestTimeMutiplier { get; }
+        float BuildingTimeMutiplier { get; }
+        float GoldExtractedAmountMutiplier { get; }
+        float RockExtractedAmountMutiplier { get; }
+        float WoodExtractedAmountMutiplier { get; }
+        float FoodHarvestedAmountMutiplier { get; }
 
         /// <summary>
         /// how often various checkers(this.StartChecker) in the game run(calculating scores, check immigration, check employment, ...)
@@ -34,6 +48,13 @@
         /// </summary>
         /// <param name="difficultyFactor"></param>
         void RegisterDifficultyFactor(IDifficultyFactor difficultyFactor);
+
+        /// <summary>
+        /// record something that influences civilization
+        /// </summary>
+        /// <param name="civilizationFactor"></param>
+        void RegisterCivilizationFactor(ICivilizationFactor civilizationFactor);
+
         /// <summary>
         /// deregister something influencing difficulty
         /// </summary>

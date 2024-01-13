@@ -585,11 +585,11 @@ namespace CityBuilderCore.Editor
 
             DestroyImmediate(building.gameObject);
 
-            var buildings = CreateInstance<BuildingInfoSet>();
+            var buildings = CreateInstance<BuildingDefaultInfoSet>();
             buildings.Objects = new[] { buildingInfo };
 
             AssetDatabase.CreateAsset(buildings, _model.GetAssetPath("Buildings.asset", FOLDER_CITY_BUILDINGS));
-            FindObjectOfType<ObjectRepository>().Buildings = buildings;
+            FindObjectOfType<ObjectRepository>().BuildingsDefault = buildings;
 
             FindObjectOfType<BuildingBuilder>().BuildingInfo = buildingInfo;
             FindObjectOfType<BuildingBuilder>().GetComponentInChildren<Image>().sprite = buildingSprite;

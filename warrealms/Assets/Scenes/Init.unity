@@ -670,6 +670,7 @@ GameObject:
   - component: {fileID: 1015508805}
   - component: {fileID: 1015508807}
   - component: {fileID: 1015508806}
+  - component: {fileID: 1015508808}
   m_Layer: 5
   m_Name: Sub
   m_TagString: Untagged
@@ -794,6 +795,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015508804}
   m_CullTransparentMesh: 0
+--- !u!225 &1015508808
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015508804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1069717789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1532,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5073458917700467497, guid: 05d3724a64b2d0840a1572b7d32fadb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5164911612362003766, guid: 05d3724a64b2d0840a1572b7d32fadb3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1709,6 +1727,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7223243262045402103, guid: 05d3724a64b2d0840a1572b7d32fadb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7352618372732707293, guid: 05d3724a64b2d0840a1572b7d32fadb3,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1849,6 +1872,11 @@ PrefabInstance:
       propertyPath: Title
       value: 
       objectReference: {fileID: 748584942}
+    - target: {fileID: 8505162119134217954, guid: 05d3724a64b2d0840a1572b7d32fadb3,
+        type: 3}
+      propertyPath: Subtitle
+      value: 
+      objectReference: {fileID: 1015508808}
     - target: {fileID: 8505162119134217955, guid: 05d3724a64b2d0840a1572b7d32fadb3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1952,6 +1980,11 @@ PrefabInstance:
     - target: {fileID: 8505162119134217955, guid: 05d3724a64b2d0840a1572b7d32fadb3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505162119846764115, guid: 05d3724a64b2d0840a1572b7d32fadb3,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8505162119846960622, guid: 05d3724a64b2d0840a1572b7d32fadb3,

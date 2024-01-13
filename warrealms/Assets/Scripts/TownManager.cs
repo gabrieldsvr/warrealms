@@ -73,7 +73,9 @@ namespace CityBuilderTown
         [Header("Debug")]
         [Tooltip("no walkers spawn when true, helpful for tests and debug")]
         public bool DebugSuppressWalkers;
-
+        
+        private TownDifficulty _difficulty;
+        public Civilization _civilization;
         public float FoodModifier => MapFoodModifier * _difficulty.FoodModifier;
         public float WarmModifier => MapWarmModifier * _difficulty.WarmModifier;
         public float ColdModifier => MapColdModifier * _difficulty.ColdModifier;
@@ -100,7 +102,7 @@ namespace CityBuilderTown
         private Dictionary<TownHarvestTask, IStructure> _harvestTasks;
 
         private bool _isStartup;
-        private TownDifficulty _difficulty;
+       
 
         private IGridPositions _gridPositions;
         private IStructureManager _structureManager;
@@ -127,6 +129,7 @@ namespace CityBuilderTown
             _gameSpeed = Dependencies.Get<IGameSpeed>();
 
             _difficulty = Dependencies.Get<IMissionManager>().MissionParameters?.Difficulty as TownDifficulty ?? ScriptableObject.CreateInstance<TownDifficulty>();
+            _civilization = Dependencies.Get<IMissionManager>().MissionParameters?.Civilization as Civilization ?? ScriptableObject.CreateInstance<Civilization>();
 
             _clearTask = TownTasks.Objects.OfType<TownClearTask>().First();
             _buildTask = TownTasks.Objects.OfType<TownBuildTask>().First();

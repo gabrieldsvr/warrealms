@@ -28,7 +28,7 @@ namespace CityBuilderCore.Editor
         public static Texture2D RefreshIcon { get; private set; }
 
         private BuildingCategory[] _categories;
-        private BuildingInfoSet _set;
+        private BuildingDefaultInfoSet _set;
 
         private IBuildingComponent _filterComponent;
         private BuildingCategory _filterCategory;
@@ -147,7 +147,7 @@ namespace CityBuilderCore.Editor
         {
             _categories = AssetDatabase.FindAssets("t:" + typeof(BuildingCategory).FullName).Select(id => AssetDatabase.LoadAssetAtPath<BuildingCategory>(AssetDatabase.GUIDToAssetPath(id))).OrderBy(s => s.NameSingular).ToArray();
 
-            var sets = AssetDatabase.FindAssets("t:" + typeof(BuildingInfoSet).FullName).Select(id => AssetDatabase.LoadAssetAtPath<BuildingInfoSet>(AssetDatabase.GUIDToAssetPath(id))).OrderBy(s => s.name).ToList();
+            var sets = AssetDatabase.FindAssets("t:" + typeof(BuildingDefaultInfoSet).FullName).Select(id => AssetDatabase.LoadAssetAtPath<BuildingDefaultInfoSet>(AssetDatabase.GUIDToAssetPath(id))).OrderBy(s => s.name).ToList();
             if (sets.Count == 0)
                 return false;
 
@@ -155,8 +155,8 @@ namespace CityBuilderCore.Editor
                 _set = sets[0];
 
             var setsElement = rootVisualElement.Q("SetsElement");
-            var setsField = new PopupField<BuildingInfoSet>(sets, _set, s => s.name, s => s.name);
-            setsField.RegisterCallback<ChangeEvent<BuildingInfoSet>>(e =>
+            var setsField = new PopupField<BuildingDefaultInfoSet>(sets, _set, s => s.name, s => s.name);
+            setsField.RegisterCallback<ChangeEvent<BuildingDefaultInfoSet>>(e =>
             {
                 _set = e.newValue;
                 initializeItems();
