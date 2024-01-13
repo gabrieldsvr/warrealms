@@ -48,7 +48,7 @@ namespace CityBuilderTown
             }
             
               
-            if (Items.Item.Key == FindObjectOfType<ObjectRepository>().Items.GetObject("CBER").Key)
+            if (Items.Item.Key == FindObjectOfType<ObjectRepository>().Items.GetObject("BER").Key)
             {
                 Items.Quantity = Mathf.RoundToInt(Items.Quantity * _settings.FoodHarvestedAmountMutiplier);
             }

@@ -79,21 +79,21 @@ namespace CityBuilderTown
         [Tooltip("maximum height of the terrain for objects to be added(no bushes on mountain tops)")]
         public float RockHeightMax = 999;
         
-        // [Header("Gold")]
-        // [Tooltip("index of the terrain tree")]
-        // public int GoldIndex = 5;
-        // [Tooltip("how many fields to move between checks(1 checks every field)")]
-        // public int GoldStep = 2;
-        // [Tooltip("height and width of the individual objects is 0.8-1.2 times this value")]
-        // public float GoldSize = 0.85f;
-        // [Tooltip("multiplier for the perlin noise")]
-        // public float GoldScale = 20f;
-        // [Tooltip("value of noise from which a gold is added")]
-        // public float GoldThreshold = 0.88f;
-        // [Tooltip("minimum height of the terrain for objects to be added(no trees in the ocean)")]
-        // public float GoldHeightMin = 75;
-        // [Tooltip("maximum height of the terrain for objects to be added(no bushes on mountain tops)")]
-        // public float GoldHeightMax = 999;
+        [Header("Gold")]
+        [Tooltip("index of the terrain tree")]
+        public int GoldIndex = 5;
+        [Tooltip("how many fields to move between checks(1 checks every field)")]
+        public int GoldStep = 2;
+        [Tooltip("height and width of the individual objects is 0.8-1.2 times this value")]
+        public float GoldSize = 0.85f;
+        [Tooltip("multiplier for the perlin noise")]
+        public float GoldScale = 20f;
+        [Tooltip("value of noise from which a gold is added")]
+        public float GoldThreshold = 0.88f;
+        [Tooltip("minimum height of the terrain for objects to be added(no trees in the ocean)")]
+        public float GoldHeightMin = 75;
+        [Tooltip("maximum height of the terrain for objects to be added(no bushes on mountain tops)")]
+        public float GoldHeightMax = 999;
 
         [Header("Details")]
         [Tooltip("how many fields to move between checks(1 checks every field)")]
@@ -211,9 +211,9 @@ namespace CityBuilderTown
             var rockThreshold = RockThreshold;
             var rockSeed = seed + 50;   
             
-            // var goldScale = data.size.x / GoldScale;
-            // var goldThreshold = GoldThreshold;
-            // var goldSeed = seed + 50;
+            var goldScale = data.size.x / GoldScale;
+            var goldThreshold = GoldThreshold;
+            var goldSeed = seed + 62;
 
             addTree(data, t,
                 TreeIndex, TreeStep, TreeSize,
@@ -232,11 +232,11 @@ namespace CityBuilderTown
                 RockHeightMin, RockHeightMax,
                 (int x, int y) => !hasTree(x, y, treeScale, treeSeed, treeThreshold) && !hasTree(x, y, bushScale, bushSeed, bushThreshold));
             
-            // addTree(data, t,
-            //     GoldIndex, GoldStep, GoldSize,
-            //     goldScale, goldSeed, goldThreshold,
-            //     GoldHeightMin, GoldHeightMax,
-            //     (int x, int y) => !hasTree(x, y, treeScale, treeSeed, treeThreshold) && !hasTree(x, y, bushScale, bushSeed, bushThreshold));
+            addTree(data, t,
+                GoldIndex, GoldStep, GoldSize,
+                goldScale, goldSeed, goldThreshold,
+                GoldHeightMin, GoldHeightMax,
+                (int x, int y) => !hasTree(x, y, treeScale, treeSeed, treeThreshold) && !hasTree(x, y, bushScale, bushSeed, bushThreshold));
 
             data.SetTreeInstances(t.ToArray(), true);
 
