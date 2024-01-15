@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: TownDifficulties
   m_EditorClassIdentifier: 
   Objects:
-  - {fileID: 11400000, guid: ff4e46c54ca851c4687989649582688e, type: 2}
   - {fileID: 11400000, guid: 32cb323a1ea7d6b469c42c445b077ca5, type: 2}
-  - {fileID: 11400000, guid: 63bb8a241ae684543ae8fae1497c2fe4, type: 2}
+  - {fileID: 11400000, guid: ff4e46c54ca851c4687989649582688e, type: 2}

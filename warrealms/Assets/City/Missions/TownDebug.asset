@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d955e1161b84eaf46aab1715fd2217e3, type: 3}
   m_Name: TownDebug
   m_EditorClassIdentifier: 
-  Key: DIL
-  Name: Debug
+  Key: 
+  Name: 
   Description: 
   SceneName: 
   Happenings: []
