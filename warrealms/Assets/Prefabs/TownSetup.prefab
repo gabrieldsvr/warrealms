@@ -17005,7 +17005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27df7ebb520b458189599e4d89fc8890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _exclusiveCivilizatio: {fileID: 11400000, guid: 7fc6290ff012ada419410d737b239af5,
+  _exclusiveCivilizatio: {fileID: 11400000, guid: 288f598aa36219245abb850272fb1e99,
     type: 2}
   isActive: 0
 --- !u!1 &7232752471227196115

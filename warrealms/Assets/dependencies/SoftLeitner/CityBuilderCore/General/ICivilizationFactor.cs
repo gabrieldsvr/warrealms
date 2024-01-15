@@ -19,6 +19,5 @@ namespace CityBuilderCore
         public float WoodExtractedAmountMutiplier { get; }
         public float FoodHarvestedAmountMutiplier { get; }
         GameObject ExclusiveConstruction { get; }
-        GameObject DefaultSettler { get; }
     }
 }

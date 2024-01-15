@@ -18,7 +18,7 @@ MonoBehaviour:
   Size: {x: 5, y: 5}
   IsDestructible: 1
   IsWalkable: 0
-  Prefab: {fileID: 8745087151817180438, guid: 0bb23caf82226fe48bd37752d9c24d4c, type: 3}
+  Prefab: {fileID: 8745087151817180438, guid: 76489bbb5aa90f2448f325879f090fe6, type: 3}
   PrefabAlternatives:
   - {fileID: 8745087151817180438, guid: 34687a47ef30ff34a8fdb2335c2df43a, type: 3}
   - {fileID: 8745087151817180438, guid: d33784282c7c5d4438917ecf6a32768f, type: 3}

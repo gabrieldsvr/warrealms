@@ -15,8 +15,6 @@ namespace CityBuilderCore
 
         [Tooltip("exclusive construction")] public GameObject ExclusiveConstruction;
 
-        [Tooltip("default settler model")] public GameObject DefaultSettler;
-
         public float GoldMiningTimeMutiplier = 1f;
         public float RockMiningTimeMutiplier = 1f;
         public float WoodExtractionTimeMutiplier = 1f;
@@ -28,7 +26,6 @@ namespace CityBuilderCore
         public float FoodHarvestedAmountMutiplier = 1f;
 
         GameObject ICivilizationFactor.ExclusiveConstruction => ExclusiveConstruction;
-        GameObject ICivilizationFactor.DefaultSettler => DefaultSettler;
 
         float ICivilizationFactor.GoldMiningTimeMutiplier => GoldMiningTimeMutiplier;
         float ICivilizationFactor.RockMiningTimeMutiplier => RockMiningTimeMutiplier;
