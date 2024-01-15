@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: TownMissions
   m_EditorClassIdentifier: 
   Objects:
-  - {fileID: 11400000, guid: 5d5b00fa3d396d74a89c3ac8566f113a, type: 2}
   - {fileID: 11400000, guid: 07100693d6693fa4f92b2d653489f075, type: 2}
