@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ColonyCivilizations
   m_EditorClassIdentifier: 
   Objects:
-  - {fileID: 11400000, guid: 3f0b9987278e7464b95b54b79d781c25, type: 2}
-  - {fileID: 11400000, guid: 7fc6290ff012ada419410d737b239af5, type: 2}
+  - {fileID: 11400000, guid: 288f598aa36219245abb850272fb1e99, type: 2}
+  - {fileID: 11400000, guid: 74dbf30411eb9a547b135cef5ba2ba58, type: 2}
