@@ -17,7 +17,7 @@ MonoBehaviour:
   RiskMultiplier: 0
   ServiceMultiplier: 0
   ItemsMultiplier: 0
-  FoodModifier: 1
+  FoodModifier: 0.0001
   WarmModifier: 1
   ColdModifier: 1
   AgeModifier: 1

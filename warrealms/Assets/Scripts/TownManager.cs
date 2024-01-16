@@ -82,7 +82,7 @@ namespace CityBuilderTown
 
         private TownDifficulty _difficulty;
 
-        public Civilization _civilization;
+        private TownCivilization _civilization;
         public float FoodModifier => MapFoodModifier * _difficulty.FoodModifier;
         public float WarmModifier => MapWarmModifier * _difficulty.WarmModifier;
         public float ColdModifier => MapColdModifier * _difficulty.ColdModifier;
@@ -138,8 +138,10 @@ namespace CityBuilderTown
 
             _difficulty = Dependencies.Get<IMissionManager>().MissionParameters?.Difficulty as TownDifficulty ??
                           ScriptableObject.CreateInstance<TownDifficulty>();
-            _civilization = Dependencies.Get<IMissionManager>().MissionParameters?.Civilization as Civilization ??
-                            ScriptableObject.CreateInstance<Civilization>();
+            _civilization = Dependencies.Get<IMissionManager>().MissionParameters?.Civilization as TownCivilization ??
+                            ScriptableObject.CreateInstance<TownCivilization>();
+            
+            Walkers.Prefab = _civilization.ManualTownDefaultWalker.Prefab;
 
             _clearTask = TownTasks.Objects.OfType<TownClearTask>().First();
             _buildTask = TownTasks.Objects.OfType<TownBuildTask>().First();
@@ -253,9 +255,11 @@ namespace CityBuilderTown
         {
             if (DebugSuppressWalkers)
                 return null;
-
+            
             var walker = Walkers.Spawn(start: PathHelper.FindRandomPoint(building.Point, 1, 2, Walkers.Prefab.PathType,
                 Walkers.Prefab.PathTag));
+
+          
 
             setJobless();
             setTotal();
@@ -436,6 +440,11 @@ namespace CityBuilderTown
         private void setJobless()
         {
             JoblessText.text = Walkers.CurrentWalkers.Where(w => !w.Job).Count().ToString();
+        }
+
+        public TownCivilization GetCivilization()
+        {
+            return _civilization;
         }
 
         private void changeSeason(TownSeason season)

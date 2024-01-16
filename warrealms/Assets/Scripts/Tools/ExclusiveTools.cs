@@ -8,16 +8,11 @@ namespace CityBuilderTown
     public class ExclusiveTools : MonoBehaviour
     {
 
-        public Civilization _exclusiveCivilizatio;
-
-        public Boolean isActive=false;
-        
-        
-
+        public TownCivilization _exclusiveCivilizatio;
         private void Start()
         {
       
-            if (_exclusiveCivilizatio.Key != TownManager.Instance._civilization.Key)
+            if (_exclusiveCivilizatio.Key != TownManager.Instance.GetCivilization().Key)
             {
                 this.gameObject.SetActive(false);
             }
