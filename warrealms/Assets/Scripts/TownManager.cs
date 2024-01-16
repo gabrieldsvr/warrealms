@@ -140,6 +140,8 @@ namespace CityBuilderTown
                           ScriptableObject.CreateInstance<TownDifficulty>();
             _civilization = Dependencies.Get<IMissionManager>().MissionParameters?.Civilization as TownCivilization ??
                             ScriptableObject.CreateInstance<TownCivilization>();
+            
+            Walkers.Prefab = _civilization.ManualTownDefaultWalker.Prefab;
 
             _clearTask = TownTasks.Objects.OfType<TownClearTask>().First();
             _buildTask = TownTasks.Objects.OfType<TownBuildTask>().First();
@@ -253,9 +255,11 @@ namespace CityBuilderTown
         {
             if (DebugSuppressWalkers)
                 return null;
-
+            
             var walker = Walkers.Spawn(start: PathHelper.FindRandomPoint(building.Point, 1, 2, Walkers.Prefab.PathType,
                 Walkers.Prefab.PathTag));
+
+          
 
             setJobless();
             setTotal();

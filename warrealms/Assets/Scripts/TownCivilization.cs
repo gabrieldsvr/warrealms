@@ -10,5 +10,6 @@ namespace CityBuilderTown
     public class TownCivilization : Civilization
     {
         public TownWalker DefaultWalker;
+        public ManualTownWalkerSpawner ManualTownDefaultWalker;
     }
 }

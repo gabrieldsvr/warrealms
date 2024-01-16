@@ -33,4 +33,9 @@ MonoBehaviour:
   RockExtractedAmountMutiplier: 1
   WoodExtractedAmountMutiplier: 1
   FoodHarvestedAmountMutiplier: 1
-  DefaultWalker: {fileID: 0}
+  DefaultWalker: {fileID: 8948523437770005890, guid: b05d5a8a938d3eb42b3b7ead7d4804f3,
+    type: 3}
+  ManualTownDefaultWalker:
+    Prefab: {fileID: 8948523437770005890, guid: b05d5a8a938d3eb42b3b7ead7d4804f3,
+      type: 3}
+    Count: 1
