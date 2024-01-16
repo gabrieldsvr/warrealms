@@ -3433,8 +3433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bounds:
-    m_Center: {x: 128, y: 0, z: 128}
-    m_Extent: {x: 128, y: 128, z: 128}
+    m_Center: {x: 500, y: 0, z: 500}
+    m_Extent: {x: 600, y: 300, z: 600}
   Terrains:
   - {fileID: 1416566727970399318}
   Meshes: []
@@ -3494,7 +3494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Terrain: {fileID: 1416566727970399318}
-  HeightScale: 2
+  HeightScale: 2.54
   HeightOffsetDown: 0.4
   HeightFlat: 0.2
   HeightFactor: 1.2
@@ -3511,14 +3511,14 @@ MonoBehaviour:
   TreeHeightMax: 85
   BushIndex: 3
   BushStep: 3
-  BushSize: 0.25
-  BushScale: 10
+  BushSize: 0.57
+  BushScale: 20
   BushThreshold: 0.85
   BushHeightMin: 74
   BushHeightMax: 90
   RockIndex: 1
-  RockStep: 2
-  RockSize: 0.85
+  RockStep: 3
+  RockSize: 0.57
   RockScale: 20
   RockThreshold: 0.88
   RockHeightMin: 75
@@ -5074,7 +5074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e731976b4ff89945bd94bd8e97c93ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: {x: 256, y: 256}
+  Size: {x: 1000, y: 1000}
   ClampPoints: 1
   GridVisual: {fileID: 0}
   Variance: 0.1
@@ -6637,7 +6637,6 @@ MonoBehaviour:
   MapAgeModifier: 1
   MapGrowthModifier: 1
   DebugSuppressWalkers: 0
-  _civilization: {fileID: 0}
 --- !u!114 &1416566728752205414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8938,8 +8937,8 @@ Transform:
   m_GameObject: {fileID: 1416566729431643287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 128, y: -12.9, z: 128}
-  m_LocalScale: {x: 256, y: 20, z: 256}
+  m_LocalPosition: {x: 500, y: -14.16, z: 500}
+  m_LocalScale: {x: 1000, y: 20, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1416566728282580471}
@@ -17007,7 +17006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exclusiveCivilizatio: {fileID: 11400000, guid: 288f598aa36219245abb850272fb1e99,
     type: 2}
-  isActive: 0
 --- !u!1 &7232752471227196115
 GameObject:
   m_ObjectHideFlags: 0
