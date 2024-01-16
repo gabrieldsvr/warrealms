@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8c1fdb09a8149b98960eff836c8303b, type: 3}
+  m_Script: {fileID: 11500000, guid: a5a4647b14584778be14adc4405460d9, type: 3}
   m_Name: PortugueseCivilization
   m_EditorClassIdentifier: 
   Key: PT
@@ -24,13 +24,18 @@ MonoBehaviour:
     de novos horizontes e alian\xE7as estrat\xE9gicas, tornando-os mestres indiscut\xEDveis
     dos mares."
   ExclusiveConstruction: {fileID: 0}
-  DefaultSettler: {fileID: 0}
   GoldMiningTimeMutiplier: 1
   RockMiningTimeMutiplier: 1
   WoodExtractionTimeMutiplier: 1
   HarvestTimeMutiplier: 1
-  BuildingTimeMutiplier: 1
+  BuildingTimeMutiplier: 10
   GoldExtractedAmountMutiplier: 1
   RockExtractedAmountMutiplier: 1
   WoodExtractedAmountMutiplier: 1
   FoodHarvestedAmountMutiplier: 1
+  DefaultWalker: {fileID: 8948523437770005890, guid: b05d5a8a938d3eb42b3b7ead7d4804f3,
+    type: 3}
+  ManualTownDefaultWalker:
+    Prefab: {fileID: 8948523437770005890, guid: b05d5a8a938d3eb42b3b7ead7d4804f3,
+      type: 3}
+    Count: 1

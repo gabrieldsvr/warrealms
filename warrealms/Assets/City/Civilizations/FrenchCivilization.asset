@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8c1fdb09a8149b98960eff836c8303b, type: 3}
+  m_Script: {fileID: 11500000, guid: a5a4647b14584778be14adc4405460d9, type: 3}
   m_Name: FrenchCivilization
   m_EditorClassIdentifier: 
   Key: FR
-  Name: Franch
+  Name: French
   About: "Os Franceses, conhecidos por sua influente cultura e poderosa monarquia
     durante a era medieval, s\xE3o mestres da arte e arquitetura, com uma sociedade
     florescente que valoriza o refinamento e a eleg\xE2ncia. A Fran\xE7a medieval
@@ -24,7 +24,6 @@ MonoBehaviour:
     diplom\xE1tica os torna uma civiliza\xE7\xE3o equilibrada e formid\xE1vel, capaz
     de conquistar tanto pelas armas quanto pelo charme."
   ExclusiveConstruction: {fileID: 0}
-  DefaultSettler: {fileID: 0}
   GoldMiningTimeMutiplier: 1
   RockMiningTimeMutiplier: 1
   WoodExtractionTimeMutiplier: 1
@@ -34,3 +33,9 @@ MonoBehaviour:
   RockExtractedAmountMutiplier: 1
   WoodExtractedAmountMutiplier: 1
   FoodHarvestedAmountMutiplier: 1
+  DefaultWalker: {fileID: 8948523437770005890, guid: b576d6128483f8740b1c807573eab74a,
+    type: 3}
+  ManualTownDefaultWalker:
+    Prefab: {fileID: 8948523437770005890, guid: b576d6128483f8740b1c807573eab74a,
+      type: 3}
+    Count: 1

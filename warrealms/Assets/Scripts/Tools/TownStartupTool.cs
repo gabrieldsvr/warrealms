@@ -90,9 +90,27 @@ namespace CityBuilderTown
                 }
                 foreach (var walker in Walkers)
                 {
-                    walker.transform.position += worldPosition;
-                    walker.gameObject.SetActive(true);
-                    TownManager.Instance.Walkers.Integrate(walker);
+                    
+                    GameObject walkerPrefab = TownManager.Instance.GetCivilization().DefaultWalker.Info.Prefab;
+                    GameObject walkerInstance = Instantiate(walkerPrefab);
+                    TownWalker newWalker = walkerInstance.GetComponent<TownWalker>();
+                    
+                    // Configurar o novo walker
+                    newWalker.transform.position = walker.transform.position + worldPosition;
+                    newWalker.Info = TownManager.Instance.GetCivilization().DefaultWalker.Info;
+                    newWalker.transform.SetParent(walker.transform.parent.transform, false);
+                    newWalker.gameObject.SetActive(true);
+                    
+                    
+                    // Integra o novo walker ao sistema, se necessário
+                    TownManager.Instance.Walkers.Integrate(newWalker);
+                    
+                    // Destruir o walker antigo
+                    Destroy(walker.gameObject);
+                    
+                    // walker.transform.position += worldPosition;
+                    // walker.gameObject.SetActive(true);
+                    // TownManager.Instance.Walkers.Integrate(walker);
                 }
 
                 TownManager.Instance.StartupSet();

@@ -226,7 +226,7 @@ MonoBehaviour:
   BushHeightMax: 90
   RockIndex: 1
   RockStep: 2
-  RockSize: 6.12
+  RockSize: 0.57
   RockScale: 20
   RockThreshold: 0.88
   RockHeightMin: 75

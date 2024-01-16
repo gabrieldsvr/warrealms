@@ -20,36 +20,41 @@ namespace CityBuilderTown
         [Header("Items")]
         [Tooltip("item category that contains all the items walkers can consume in their home to refill their food")]
         public ItemCategory Food;
+
         [Tooltip("item that is used in homes so walkers can visit them to refill warmth")]
         public Item Wood;
-        [Tooltip("limits how many of some items should be produced(not all logs should be turned into firewood), can be changed by players and is persisted")]
+
+        [Tooltip(
+            "limits how many of some items should be produced(not all logs should be turned into firewood), can be changed by players and is persisted")]
         public ItemQuantity[] ItemLimits;
 
-        [Header("Structure")]
-        [Tooltip("parent for newly spawned walkers")]
+        [Header("Structure")] [Tooltip("parent for newly spawned walkers")]
         public Transform WalkerParent;
+
         [Tooltip("parent for newly created tasks")]
         public Transform TaskParent;
 
-        [Header("Sets")]
-        [Tooltip("set of all tasks")]
+        [Header("Sets")] [Tooltip("set of all tasks")]
         public TownTaskSet TownTasks;
-        [Tooltip("set of all jobs")]
-        public TownJobSet TownJobs;
 
-        [Header("Other")]
-        [Tooltip("timing unit for seasons(0-3)")]
+        [Tooltip("set of all jobs")] public TownJobSet TownJobs;
+
+        [Header("Other")] [Tooltip("timing unit for seasons(0-3)")]
         public TimingUnit SeasonUnit;
-        [Tooltip("spawner for town walkers")]
-        public ManualTownWalkerSpawner Walkers;
+
+        [Tooltip("spawner for town walkers")] public ManualTownWalkerSpawner Walkers;
 
         [Header("UI")]
-        [Tooltip("tool that is activated when the game is first started so players can place their initial buildings an walkers")]
+        [Tooltip(
+            "tool that is activated when the game is first started so players can place their initial buildings an walkers")]
         public TownStartupTool StartupTool;
+
         [Tooltip("fader used to hide map generation when the map is loaded")]
         public Fader Fader;
+
         [Tooltip("text element that shows the total count of walkers")]
         public TMPro.TMP_InputField TotalText;
+
         [Tooltip("text element that shows how many walkers dont have a specific job assigned")]
         public TMPro.TMP_InputField JoblessText;
 
@@ -57,25 +62,27 @@ namespace CityBuilderTown
         [FormerlySerializedAs("DebugFoodModifier")]
         [Tooltip("modifies how fast food is lost over time")]
         public float MapFoodModifier = 1f;
-        [FormerlySerializedAs("DebugWarmModifier")]
-        [Tooltip("modifies how fast warmth is lost over time")]
+
+        [FormerlySerializedAs("DebugWarmModifier")] [Tooltip("modifies how fast warmth is lost over time")]
         public float MapWarmModifier = 1f;
+
         [FormerlySerializedAs("DebugColdModifier")]
         [Tooltip("modifies how cold it is(affects warmth loss and wood usage)")]
         public float MapColdModifier = 1f;
-        [FormerlySerializedAs("DebugAgeModifier")]
-        [Tooltip("modifies how fast walkers age")]
+
+        [FormerlySerializedAs("DebugAgeModifier")] [Tooltip("modifies how fast walkers age")]
         public float MapAgeModifier = 1f;
+
         [FormerlySerializedAs("DebugGrowthModifier")]
         [Tooltip("modifies how many trees and bushes grow at the start of summer")]
         public float MapGrowthModifier = 1f;
 
-        [Header("Debug")]
-        [Tooltip("no walkers spawn when true, helpful for tests and debug")]
+        [Header("Debug")] [Tooltip("no walkers spawn when true, helpful for tests and debug")]
         public bool DebugSuppressWalkers;
-        
+
         private TownDifficulty _difficulty;
-        public Civilization _civilization;
+
+        private TownCivilization _civilization;
         public float FoodModifier => MapFoodModifier * _difficulty.FoodModifier;
         public float WarmModifier => MapWarmModifier * _difficulty.WarmModifier;
         public float ColdModifier => MapColdModifier * _difficulty.ColdModifier;
@@ -83,6 +90,7 @@ namespace CityBuilderTown
         public float GrowthModifier => MapGrowthModifier * _difficulty.GrowthModifier;
 
         public TownSeason Season => _season;
+
         public float Coldness
         {
             get
@@ -102,7 +110,7 @@ namespace CityBuilderTown
         private Dictionary<TownHarvestTask, IStructure> _harvestTasks;
 
         private bool _isStartup;
-       
+
 
         private IGridPositions _gridPositions;
         private IStructureManager _structureManager;
@@ -128,8 +136,12 @@ namespace CityBuilderTown
             _structureManager = Dependencies.Get<IStructureManager>();
             _gameSpeed = Dependencies.Get<IGameSpeed>();
 
-            _difficulty = Dependencies.Get<IMissionManager>().MissionParameters?.Difficulty as TownDifficulty ?? ScriptableObject.CreateInstance<TownDifficulty>();
-            _civilization = Dependencies.Get<IMissionManager>().MissionParameters?.Civilization as Civilization ?? ScriptableObject.CreateInstance<Civilization>();
+            _difficulty = Dependencies.Get<IMissionManager>().MissionParameters?.Difficulty as TownDifficulty ??
+                          ScriptableObject.CreateInstance<TownDifficulty>();
+            _civilization = Dependencies.Get<IMissionManager>().MissionParameters?.Civilization as TownCivilization ??
+                            ScriptableObject.CreateInstance<TownCivilization>();
+            
+            Walkers.Prefab = _civilization.ManualTownDefaultWalker.Prefab;
 
             _clearTask = TownTasks.Objects.OfType<TownClearTask>().First();
             _buildTask = TownTasks.Objects.OfType<TownBuildTask>().First();
@@ -159,6 +171,7 @@ namespace CityBuilderTown
 
         public int GetItemLimit(Item item) => ItemLimits.Single(l => l.Item = item).Quantity;
         public void SetItemLimit(Item item, int quantity) => ItemLimits.Single(l => l.Item == item).Quantity = quantity;
+
         public bool GetItemLimitReached(Item item)
         {
             var limit = ItemLimits.FirstOrDefault(l => l.Item == item);
@@ -166,7 +179,8 @@ namespace CityBuilderTown
                 return false;
 
             var storageQuantity = item.GetStoredQuantity();
-            var taskQuantitiy = _tasks.OfType<TownItemTask>().Where(t => t.Items.Item == item).Sum(t => t.Items.Quantity);
+            var taskQuantitiy = _tasks.OfType<TownItemTask>().Where(t => t.Items.Item == item)
+                .Sum(t => t.Items.Quantity);
             var walkerQuantity = Walkers.CurrentWalkers.Sum(w => w.ItemStorage.GetItemQuantity(item));
 
             var totalQuantity = storageQuantity + taskQuantitiy + walkerQuantity;
@@ -180,6 +194,7 @@ namespace CityBuilderTown
                 return;
             _tasks.Add(task);
         }
+
         public void DeregisterTask(TownTask task)
         {
             _tasks.Remove(task);
@@ -193,9 +208,11 @@ namespace CityBuilderTown
 
             return task;
         }
+
         public T CreateTask<T>(T prefab, Vector2Int point, Transform parent = null) where T : TownTask
         {
-            var task = Instantiate(prefab, _gridPositions.GetWorldCenterPosition(point), Quaternion.identity, parent ?? TaskParent);
+            var task = Instantiate(prefab, _gridPositions.GetWorldCenterPosition(point), Quaternion.identity,
+                parent ?? TaskParent);
 
             Dependencies.Get<IGridHeights>().ApplyHeight(task.transform);
 
@@ -206,20 +223,24 @@ namespace CityBuilderTown
         {
             return _tasks.FirstOrDefault(t => t.Point == point);
         }
+
         public TownTask GetTask(Guid id)
         {
             return _tasks.FirstOrDefault(t => t.Id == id);
         }
+
         public TownTask GetTask(TownWalker townWalker)
         {
             if (townWalker.Job)
             {
-                var jobTask = _tasks.OrderBy(t => Vector2Int.Distance(townWalker.GridPoint, t.Point)).FirstOrDefault(t => t.Job == townWalker.Job && t.CanStartTask(townWalker));
+                var jobTask = _tasks.OrderBy(t => Vector2Int.Distance(townWalker.GridPoint, t.Point))
+                    .FirstOrDefault(t => t.Job == townWalker.Job && t.CanStartTask(townWalker));
                 if (jobTask != null)
                     return jobTask;
             }
 
-            return _tasks.OrderBy(t => Vector2Int.Distance(townWalker.GridPoint, t.Point)).FirstOrDefault(t => t.Job == null && t.CanStartTask(townWalker));
+            return _tasks.OrderBy(t => Vector2Int.Distance(townWalker.GridPoint, t.Point))
+                .FirstOrDefault(t => t.Job == null && t.CanStartTask(townWalker));
         }
 
         public BuildingReference GetHome(TownWalker _)
@@ -229,12 +250,16 @@ namespace CityBuilderTown
                 .OrderBy(h => h.RemainingWalkerCapacity)
                 .FirstOrDefault()?.Building.BuildingReference;
         }
+
         public TownWalker SpawnWalker(IBuilding building)
         {
             if (DebugSuppressWalkers)
                 return null;
+            
+            var walker = Walkers.Spawn(start: PathHelper.FindRandomPoint(building.Point, 1, 2, Walkers.Prefab.PathType,
+                Walkers.Prefab.PathTag));
 
-            var walker = Walkers.Spawn(start: PathHelper.FindRandomPoint(building.Point, 1, 2, Walkers.Prefab.PathType, Walkers.Prefab.PathTag));
+          
 
             setJobless();
             setTotal();
@@ -249,19 +274,26 @@ namespace CityBuilderTown
             initializeHarvest();
             return _harvestPoints.Contains(point) && !CheckTask(point);
         }
+
         public TownHarvestTask CreateHarvest(Vector2Int point, Transform parent = null)
         {
             initializeHarvest();
             return CreateTask(_harvestTasks.First(t => t.Value.HasPoint(point)).Key, point, parent);
         }
 
-        public TownClearTask CreateClear(Vector2Int point, Transform parent = null) => CreateTask(_clearTask, point, parent);
-        public TownBuildTask CreateBuild(Vector2Int point, Transform parent = null) => CreateTask(_buildTask, point, parent);
-        public TownDeliverTask CreateDeliver(Vector2Int point, Transform parent = null) => CreateTask(_deliverTask, point, parent);
+        public TownClearTask CreateClear(Vector2Int point, Transform parent = null) =>
+            CreateTask(_clearTask, point, parent);
+
+        public TownBuildTask CreateBuild(Vector2Int point, Transform parent = null) =>
+            CreateTask(_buildTask, point, parent);
+
+        public TownDeliverTask CreateDeliver(Vector2Int point, Transform parent = null) =>
+            CreateTask(_deliverTask, point, parent);
 
         public bool Demolish(IEnumerable<Vector2Int> points)
         {
-            var tasks = points.Select(p => GetTask(p)).Where(p => p != null && p.transform.parent == TaskParent).ToList();
+            var tasks = points.Select(p => GetTask(p)).Where(p => p != null && p.transform.parent == TaskParent)
+                .ToList();
 
             if (tasks.Any())
             {
@@ -280,12 +312,15 @@ namespace CityBuilderTown
                     if (structure is IBuilding building)
                         taskPoint = building.Point;
 
-                    if (_tasks.OfType<TownDemolishTask>().Any(t => t.Point == taskPoint) || tasks.Any(t => t.Point == taskPoint))
+                    if (_tasks.OfType<TownDemolishTask>().Any(t => t.Point == taskPoint) ||
+                        tasks.Any(t => t.Point == taskPoint))
                         continue;
 
-                    var prefab = TownTasks.Objects.OfType<TownDemolishTask>().Where(t => t.StructureKey == structure.Key).FirstOrDefault();
+                    var prefab = TownTasks.Objects.OfType<TownDemolishTask>()
+                        .Where(t => t.StructureKey == structure.Key).FirstOrDefault();
                     if (prefab == null)
-                        prefab = TownTasks.Objects.OfType<TownDemolishTask>().Where(t => string.IsNullOrWhiteSpace(t.StructureKey)).FirstOrDefault();
+                        prefab = TownTasks.Objects.OfType<TownDemolishTask>()
+                            .Where(t => string.IsNullOrWhiteSpace(t.StructureKey)).FirstOrDefault();
 
                     if (prefab == null)
                         continue;
@@ -302,6 +337,7 @@ namespace CityBuilderTown
         {
             return Walkers.CurrentWalkers.Count(w => w.Job == job);
         }
+
         public void SetJobCount(TownJob job, int count)
         {
             var currentCount = GetJobCount(job);
@@ -336,6 +372,7 @@ namespace CityBuilderTown
             StartupTool.gameObject.SetActive(true);
             StartupTool.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
         }
+
         public void StartupSet()
         {
             _isStartup = false;
@@ -374,12 +411,14 @@ namespace CityBuilderTown
                 structure.PointsChanged += harvestPointsChanged;
             }
         }
+
         private void harvestPointsChanged(PointsChanged<IStructure> change)
         {
             foreach (var point in change.RemovedPoints)
             {
                 _harvestPoints.Remove(point);
             }
+
             foreach (var point in change.AddedPoints)
             {
                 _harvestPoints.Add(point);
@@ -403,6 +442,11 @@ namespace CityBuilderTown
             JoblessText.text = Walkers.CurrentWalkers.Where(w => !w.Job).Count().ToString();
         }
 
+        public TownCivilization GetCivilization()
+        {
+            return _civilization;
+        }
+
         private void changeSeason(TownSeason season)
         {
             _season = season;
@@ -410,10 +454,12 @@ namespace CityBuilderTown
             switch (Season)
             {
                 case TownSeason.Spring:
-                    Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest($"It is Spring now!"));
+                    Dependencies.GetOptional<INotificationManager>()
+                        ?.Notify(new NotificationRequest($"It is Spring now!"));
                     break;
                 case TownSeason.Summer:
-                    Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest($"Summer has arrived!"));
+                    Dependencies.GetOptional<INotificationManager>()
+                        ?.Notify(new NotificationRequest($"Summer has arrived!"));
 
                     if (GrowthModifier > 0f)
                     {
@@ -427,7 +473,8 @@ namespace CityBuilderTown
                         trees.Add(grownTrees);
 
                         //place 10 new growing trees
-                        treesGrowing.Add(_structureManager.GetRandomAvailablePoints(Mathf.RoundToInt(10 * GrowthModifier)));
+                        treesGrowing.Add(
+                            _structureManager.GetRandomAvailablePoints(Mathf.RoundToInt(10 * GrowthModifier)));
 
                         //regrow berries
                         var berries = _structureManager.GetStructure("BER");
@@ -438,19 +485,24 @@ namespace CityBuilderTown
                         berriesEmpty.Remove(emptyBerries);
                         berries.Add(emptyBerries);
 
-                        berriesEmpty.Add(_structureManager.GetRandomAvailablePoints(Mathf.RoundToInt(5 * GrowthModifier)));
+                        berriesEmpty.Add(
+                            _structureManager.GetRandomAvailablePoints(Mathf.RoundToInt(5 * GrowthModifier)));
                     }
+
                     break;
                 case TownSeason.Autumn:
-                    Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest($"Autumn has started!"));
+                    Dependencies.GetOptional<INotificationManager>()
+                        ?.Notify(new NotificationRequest($"Autumn has started!"));
                     break;
                 case TownSeason.Winter:
-                    Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest($"Winter has come!"));
+                    Dependencies.GetOptional<INotificationManager>()
+                        ?.Notify(new NotificationRequest($"Winter has come!"));
                     break;
             }
         }
 
         #region Saving
+
         [Serializable]
         public class TownManagerData
         {
@@ -466,10 +518,12 @@ namespace CityBuilderTown
             {
                 IsStartup = _isStartup,
                 ItemLimits = ItemLimits.Select(i => i.GetData()).ToArray(),
-                IndependentTasks = _tasks.OfType<TownTask>().Where(t => t.transform.parent == TaskParent).Select(t => t.SaveData()).ToArray(),
+                IndependentTasks = _tasks.OfType<TownTask>().Where(t => t.transform.parent == TaskParent)
+                    .Select(t => t.SaveData()).ToArray(),
                 Walkers = Walkers.SaveData()
             });
         }
+
         public override void LoadData(string json)
         {
             var data = JsonUtility.FromJson<TownManagerData>(json);
@@ -491,6 +545,7 @@ namespace CityBuilderTown
             if (_isStartup)
                 Startup();
         }
+
         #endregion
     }
 }
