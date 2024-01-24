@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b62867fd0be3f479ad130bd457fdb8, type: 3}
   m_Name: TownSeason
   m_EditorClassIdentifier: 
-  Name: Quarter
+  Name: "Esta\xE7\xE3o"
   Amount: 4
-  Duration: 60
+  Duration: 600
   Names:
-  - Spring
-  - Summer
-  - Autumn
-  - Winter
+  - Primavera
+  - "Ver\xE3o"
+  - Outono
+  - Inverno

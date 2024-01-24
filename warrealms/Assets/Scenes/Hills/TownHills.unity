@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 496929113}
   - component: {fileID: 496929112}
+  - component: {fileID: 496929114}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -239,6 +240,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &496929114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496929111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272accffc1be442fb7b172cfb050b4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 496929113}
 --- !u!1001 &626343472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -814,6 +828,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1151633842028231337, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151633842028231337, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: X5
+      objectReference: {fileID: 0}
     - target: {fileID: 1260094130723662133, guid: 8da3aa350183ed44894358b72704348e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -838,6 +862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327246314241889675, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: m_Name
+      value: SpeedButtonX5
       objectReference: {fileID: 0}
     - target: {fileID: 1416566727769092955, guid: 8da3aa350183ed44894358b72704348e,
         type: 3}
@@ -988,6 +1017,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416566727932411017, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416566727932411017, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: X2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416566727932411019, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: m_Name
+      value: SpeedButtonX2
       objectReference: {fileID: 0}
     - target: {fileID: 1416566727968909473, guid: 8da3aa350183ed44894358b72704348e,
         type: 3}
@@ -1154,6 +1198,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1416566728318736818, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: _sun
+      value: 
+      objectReference: {fileID: 496929113}
     - target: {fileID: 1416566728353553114, guid: 8da3aa350183ed44894358b72704348e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1254,6 +1303,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1416566728765307167, guid: 8da3aa350183ed44894358b72704348e,
+        type: 3}
+      propertyPath: _sun
+      value: 
+      objectReference: {fileID: 496929113}
     - target: {fileID: 1416566728888797059, guid: 8da3aa350183ed44894358b72704348e,
         type: 3}
       propertyPath: m_AnchorMax.y
