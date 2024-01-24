@@ -52,21 +52,21 @@ namespace CityBuilderTown
 
         private void Update()
         {
-            Food -= Time.deltaTime * Identity.FoodLoss * TownManager.Instance.FoodModifier;
+            Food -= Time.deltaTime * Identity.FoodLoss * TownManager.Instance.FoodModifier * 0.1f;
             if (Food <= 0f)
             {
                 Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest(
-                    $"{Identity.FullName} has starved!",
+                    $"{Identity.FullName} morreu de fome!",
                     (Home != null && Home.HasInstance) ? Home.Instance.WorldCenter : transform.position));
 
                 Finish();
             }
 
-            Warmth -= TownManager.Instance.Coldness * Time.deltaTime * Identity.WarmthLoss * TownManager.Instance.WarmModifier;
+            Warmth -= TownManager.Instance.Coldness * Time.deltaTime * Identity.WarmthLoss * TownManager.Instance.WarmModifier * 0.5f;
             if (Warmth <= 0f)
             {
                 Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest(
-                    $"{Identity.FullName} has frozen!",
+                    $"{Identity.FullName} congelou!",
                     (Home != null && Home.HasInstance) ? Home.Instance.WorldCenter : transform.position));
 
                 Finish();
@@ -76,7 +76,7 @@ namespace CityBuilderTown
             if (Age > Identity.Lifespan)
             {
                 Dependencies.GetOptional<INotificationManager>()?.Notify(new NotificationRequest(
-                    $"{Identity.FullName} has died of old age!",
+                    $"{Identity.FullName} morreu de velhice!",
                     (Home != null && Home.HasInstance) ? Home.Instance.WorldCenter : transform.position));
 
                 Finish();
