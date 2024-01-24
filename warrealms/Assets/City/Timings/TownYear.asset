@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Year
   Amount: 0
-  Duration: 240
+  Duration: 2400
   Names: []

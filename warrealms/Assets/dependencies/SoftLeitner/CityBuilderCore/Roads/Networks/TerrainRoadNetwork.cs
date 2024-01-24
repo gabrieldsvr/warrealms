@@ -156,7 +156,6 @@ namespace CityBuilderCore
 
         private int getIndex(Vector2Int point)
         {
-            Debug.Log(point);
             var a = getAlphamap(point);
             for (int i = 0; i < a.GetLength(2); i++)
             {
