@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hills/TownHills.unity
     guid: 350cd1e07e0fd4a41b6f6bc946a501e0
+  - enabled: 1
+    path: Assets/Scenes/HillValey/HillValey.unity
+    guid: 9199e01feb35c0348892a198d8e2255b
   m_configObjects: {}

@@ -15,7 +15,7 @@ MonoBehaviour:
   Key: WLKF
   Name: Walker
   Descriptions: []
-  Prefab: {fileID: 4929367201934350138, guid: 40fe150ff70001a4facf9eb54b4992cc, type: 3}
+  Prefab: {fileID: 4929367201934350138, guid: 123afad9cb7a2a143a81057394621f01, type: 3}
   PathType: 20
   PathTag: {fileID: 0}
   PathTagSelf: 0
