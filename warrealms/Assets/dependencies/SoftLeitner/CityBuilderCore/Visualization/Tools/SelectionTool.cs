@@ -4,16 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace CityBuilderCore
 {
-    /// <summary>
-    /// selects walkers and buildings under the mouse on click
-    /// </summary>
     public class SelectionTool : BaseTool
     {
-        [Tooltip("fired when a building is clicked, use to show building dialogs and such")]
         public BuildingEvent BuildingSelected;
-        [Tooltip("fired when a walker is clicked, use to show walker dialogs and such")]
         public WalkerEvent WalkerSelected;
-        [Tooltip("fired when a click occured but not building or walker was found")]
         public Vector2IntEvent PointSelected;
 
         public override bool ShowGrid => false;
